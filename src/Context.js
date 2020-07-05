@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-const { Provider, Consumer } = React.createContext();
+const Context = React.createContext();
 
 function ContextProvider(props) {
 	const [ photos, setPhotos ] = useState([]);
@@ -7,11 +7,11 @@ function ContextProvider(props) {
 	useEffect(() => {
 		fetch('https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json')
 			.then((res) => res.json())
-			.then(setPhotos);
+			.then((data) => setPhotos(data));
 	}, []);
-	console.log(photos);
 
-	return <Provider value={{ photos }}>{props.children}</Provider>;
+	// return <Provider value={{ photos }}>{props.children}</Provider>;
+	return <Context.Provider value={{ photos }}>{props.children}</Context.Provider>;
 }
 
-export { ContextProvider, Consumer as ContextConsumer };
+export { ContextProvider, Context };
