@@ -17,12 +17,6 @@ export default function CartItem({ item }) {
 		removeItem(item.id);
 	};
 
-	// const trashIcon = hover ? (
-	// 	<i className="ri-delete-bin-fill" onClick={handleRemove} onMouseEnter={onHover} onMouseLeave={onLeave} />
-	// ) : (
-	// 	<i className="ri-delete-bin-line" onClick={handleRemove} onMouseEnter={onHover} onMouseLeave={onLeave} />
-	// );
-
 	const tIcon = hover ? 'ri-delete-bin-fill' : 'ri-delete-bin-line';
 
 	return (
