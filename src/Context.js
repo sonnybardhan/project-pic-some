@@ -3,6 +3,17 @@ const Context = React.createContext();
 
 function ContextProvider(props) {
 	const [ photos, setPhotos ] = useState([]);
+	const [ cartItems, setCartItems ] = useState([]);
+
+	const addItem = (newItem) => {
+		setCartItems([ ...cartItems, newItem ]);
+	};
+
+	const removeItem = (id) => {
+		setCartItems(cartItems.filter((item) => item.id !== id));
+	};
+
+	console.log(cartItems);
 
 	const toggleIsFavorite = (id) => {
 		const updatedPhotos = photos.map((photo) => {
@@ -20,7 +31,11 @@ function ContextProvider(props) {
 			.then((data) => setPhotos(data));
 	}, []);
 
-	return <Context.Provider value={{ photos, toggleIsFavorite }}>{props.children}</Context.Provider>;
+	return (
+		<Context.Provider value={{ photos, toggleIsFavorite, addItem, cartItems, removeItem }}>
+			{props.children}
+		</Context.Provider>
+	);
 }
 
 export { ContextProvider, Context };
