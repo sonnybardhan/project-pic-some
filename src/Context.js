@@ -10,10 +10,8 @@ function ContextProvider(props) {
 	};
 
 	const removeItem = (id) => {
-		setCartItems(cartItems.filter((item) => item.id !== id));
+		setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
 	};
-
-	console.log(cartItems);
 
 	const toggleIsFavorite = (id) => {
 		const updatedPhotos = photos.map((photo) => {
@@ -25,6 +23,10 @@ function ContextProvider(props) {
 		setPhotos(updatedPhotos);
 	};
 
+	const emptyCart = () => {
+		setCartItems([]);
+	};
+
 	useEffect(() => {
 		fetch('https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json')
 			.then((res) => res.json())
@@ -32,7 +34,7 @@ function ContextProvider(props) {
 	}, []);
 
 	return (
-		<Context.Provider value={{ photos, toggleIsFavorite, addItem, cartItems, removeItem }}>
+		<Context.Provider value={{ photos, toggleIsFavorite, addItem, cartItems, removeItem, emptyCart }}>
 			{props.children}
 		</Context.Provider>
 	);
