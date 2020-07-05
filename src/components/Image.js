@@ -1,5 +1,6 @@
 import React, { useState, Fragment, useContext } from 'react';
 import { Context } from '../Context';
+import PropTypes from 'prop-types';
 
 export default function Image({ className, img }) {
 	const { toggleIsFavorite } = useContext(Context);
@@ -32,3 +33,12 @@ export default function Image({ className, img }) {
 		</div>
 	);
 }
+
+Image.propTypes = {
+	className: PropTypes.string,
+	img: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		url: PropTypes.string.isRequired,
+		isFavorite: PropTypes.bool
+	})
+};
