@@ -1,8 +1,16 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
+import Header from './components/Header';
+import Cart from './pages/Cart';
+import Photos from './pages/Photos';
 
 function App() {
-	return <div className="App">hello world</div>;
+	return (
+		<div className="">
+			<Header />
+			<h1>Home Page</h1>
+		</div>
+	);
 }
 
 export default App;
