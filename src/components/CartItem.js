@@ -1,16 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../Context';
+import useHover from '../hooks/useHover';
+
 export default function CartItem({ item }) {
-	const [ hover, setHover ] = useState(false);
+	const [ hover, toggleHover ] = useHover();
 
 	const { removeItem } = useContext(Context);
 
 	const onHover = () => {
-		setHover(true);
+		toggleHover();
 	};
 
 	const onLeave = () => {
-		setHover(false);
+		toggleHover();
 	};
 
 	const handleRemove = () => {

@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../Context';
 import PropTypes from 'prop-types';
+import useHover from '../hooks/useHover';
 
 export default function Image({ className, img }) {
 	const { toggleIsFavorite, addItem, cartItems, removeItem } = useContext(Context);
-	const [ hovered, setHovered ] = useState(false);
+
+	const [ hover, toggleHover ] = useHover();
 
 	const onHover = () => {
-		setHovered(true);
+		toggleHover();
 	};
 	const onLeave = () => {
-		setHovered(false);
+		toggleHover();
 	};
 
 	const handleToggleFavorite = () => {
@@ -28,7 +30,7 @@ export default function Image({ className, img }) {
 	const heartIcon = img.isFavorite ? (
 		<i className="ri-heart-fill favorite" onClick={handleToggleFavorite} />
 	) : (
-		hovered && <i className="ri-heart-line favorite" onClick={handleToggleFavorite} />
+		hover && <i className="ri-heart-line favorite" onClick={handleToggleFavorite} />
 	);
 
 	const plusIcon = () => {
@@ -36,7 +38,7 @@ export default function Image({ className, img }) {
 		if (item) {
 			return <i className="ri-add-circle-fill cart" onClick={handleRemoveItem} />;
 		} else {
-			return hovered && <i className="ri-add-circle-line cart" onClick={handleAddItem} />;
+			return hover && <i className="ri-add-circle-line cart" onClick={handleAddItem} />;
 		}
 	};
 
